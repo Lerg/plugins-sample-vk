@@ -1,4 +1,4 @@
-local storyboard = require('storyboard')
+local composer = require('composer')
 local widget = require('widget')
 local json = require('json')
 local vk = require('lib.vk')
@@ -15,9 +15,9 @@ local function alert(text)
     native.showAlert('VK App', text or 'nil', {'OK'})
 end
 
-local scene = storyboard.newScene()
+local scene = composer.newScene()
 
-function scene:createScene(event)
+function scene:create(event)
     local group = self.view
 
     local background = display.newRect(_CX, _CY, _SW, _SH)
@@ -67,7 +67,7 @@ function scene:createScene(event)
             if not event.isError then
                 if event.response then
                     local response = json.decode(event.response)
-                    storyboard.gotoScene('scenes.friends', {effect = 'slideLeft', time = 400, params = {
+                    composer.gotoScene('scenes.friends', {effect = 'slideLeft', time = 400, params = {
                         mode = mode,
                         friends = response.response.items}})
                 end
@@ -184,13 +184,15 @@ function scene:createScene(event)
     group:insert(button)
 end
 
-function scene:didExitScene()
-    local previous_scene = storyboard.getPrevious()
-    if previous_scene then
-        storyboard.removeScene(previous_scene)
+function scene:hide(event)
+    if event.phase == 'did' then
+        local previous_scene = composer.getSceneName('previous')
+        if previous_scene then
+            composer.removeScene(previous_scene)
+        end
     end
 end
 
-scene:addEventListener('didExitScene')
-scene:addEventListener('createScene')
+scene:addEventListener('hide')
+scene:addEventListener('create')
 return scene

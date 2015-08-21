@@ -1,4 +1,4 @@
-local storyboard = require('storyboard')
+local composer = require('composer')
 local widget = require('widget')
 local json = require('json')
 local vk = require('lib.vk')
@@ -15,9 +15,9 @@ local function alert(text)
     native.showAlert('VK App', text or 'nil', {'OK'})
 end
 
-local scene = storyboard.newScene()
+local scene = composer.newScene()
 
-function scene:createScene(event)
+function scene:create(event)
     local group = self.view
 
     local mode = event.params.mode
@@ -45,7 +45,7 @@ function scene:createScene(event)
         cornerRadius = 2,
         fillColor = {default={1}, over={0.75}},
         onRelease = function()
-            storyboard.gotoScene('scenes.menu', {effect = 'slideRight', time = 400})
+            composer.gotoScene('scenes.menu', {effect = 'slideRight', time = 400})
         end}
     group:insert(button)
 
@@ -75,7 +75,7 @@ function scene:createScene(event)
                                     end
                                 end)
                             end
-                            storyboard.gotoScene('scenes.menu', {effect = 'slideRight', time = 400})
+                            composer.gotoScene('scenes.menu', {effect = 'slideRight', time = 400})
                         elseif event.index == 3 then
                             -- Message
                             for id, v in pairs(invitationList) do
@@ -89,7 +89,7 @@ function scene:createScene(event)
                                     end
                                 end)
                             end
-                            storyboard.gotoScene('scenes.menu', {effect = 'slideRight', time = 400})
+                            composer.gotoScene('scenes.menu', {effect = 'slideRight', time = 400})
                         end
                     end
                 end)
@@ -179,13 +179,15 @@ function scene:createScene(event)
     group:insert(tableView)
 end
 
-function scene:didExitScene()
-    local previous_scene = storyboard.getPrevious()
-    if previous_scene then
-        storyboard.removeScene(previous_scene)
+function scene:hide(event)
+    if event.phase == 'did' then
+        local previous_scene = composer.getSceneName('previous')
+        if previous_scene then
+            composer.removeScene(previous_scene)
+        end
     end
 end
 
-scene:addEventListener('didExitScene')
-scene:addEventListener('createScene')
+scene:addEventListener('hide')
+scene:addEventListener('create')
 return scene

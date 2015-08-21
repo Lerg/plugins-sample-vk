@@ -1,4 +1,4 @@
-local storyboard = require('storyboard')
+local composer = require('composer')
 local widget = require('widget')
 local vk = require('lib.vk')
 
@@ -15,4 +15,4 @@ vk.init('4789591', {'messages', 'friends', 'wall'}, launchArgs)
 
 local r, g, b = vk.getMainColor()
 display.setDefault('background', r, g, b)
-storyboard.gotoScene('scenes.menu')
+composer.gotoScene('scenes.menu')
