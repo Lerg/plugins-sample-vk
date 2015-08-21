@@ -107,6 +107,9 @@ local hostname = 'https://api.vk.com/method/'
 
 function vk.getPhoto(params)
     local id = params.id or vk.getUserId()
+    if not id then
+        return
+    end
     local listener = params.listener
     local url = 'users.get?uids=' .. id .. '&fields=photo_200'
     network.request(hostname .. url , 'GET', function (event)
