@@ -4,7 +4,7 @@ settings = {
         supported = {'portrait', 'portraitUpsideDown'}
     },
     android = {
-        usesPermissions = {},
+        usesPermissions = {'android.permission.INTERNET'},
         intentFilters = {
             {
                 actions = {'android.intent.action.VIEW'},
