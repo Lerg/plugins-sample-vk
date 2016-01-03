@@ -6,7 +6,7 @@ local vk = require('plugin.vk')
 -- Available permissions
 -- notify, friends, photos, audio, video, docs, notes,
 -- pages, status, wall, groups, messages, notifications,
--- stats, ads, offline, nohttps, direct, email
+-- stats, ads, offline, direct, email
 
 --[[
 ==== Plugin API ====
@@ -20,8 +20,6 @@ vk.init(app_id, permissions)
 vk.login(listener, options)
   listener             - called on finish of the request
   options              - dictionary of string elements (optional)
-  options.revokeAccess - if true, user has to authorize the app each time after logout, false by default
-  options.forceOAuth   - if true, don't use official VK App, false by default
   options.inApp        - if true, don't use Safari, false by default
 
   Performs authorization
@@ -50,7 +48,6 @@ vk.showShareDialog(options)
 vk.request(method, params, [httpMethod], listener)
   method     - VK API method string
   params     - method params, array of strings
-  httpMethod - GET or POST string, GET by default
   listener   - called on finish of the request
 
   Performs arbitrary VK API method call

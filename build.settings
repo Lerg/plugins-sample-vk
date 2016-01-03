@@ -4,7 +4,7 @@ settings = {
         supported = {'portrait', 'portraitUpsideDown'}
     },
     android = {
-        usesPermissions = {'android.permission.INTERNET'},
+        usesPermissions = {},
         intentFilters = {
             {
                 actions = {'android.intent.action.VIEW'},
@@ -42,6 +42,7 @@ settings = {
                     }
                 }
             },
+            LSApplicationQueriesSchemes = {'vk', 'vk-share', 'vkauthorize'},
             UIBackgroundModes = {'remote-notification'},
             UIApplicationExitsOnSuspend = false,
         },

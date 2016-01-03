@@ -11,7 +11,7 @@ vk.init('4789591', {'messages', 'friends', 'wall'}, launchArgs)
 -- Available permissions
 -- notify, friends, photos, audio, video, docs, notes,
 -- pages, status, wall, groups, messages, notifications,
--- stats, ads, offline, nohttps, direct, email
+-- stats, ads, offline, direct, email
 
 local r, g, b = vk.getMainColor()
 display.setDefault('background', r, g, b)

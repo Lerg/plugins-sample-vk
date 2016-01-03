@@ -39,7 +39,7 @@ function scene:create(event)
         cornerRadius = cornerRadius,
         fillColor = fillColor,
         onRelease = function()
-            local options = {revokeAccess = true} -- {revokeAccess = true, forceOAuth = true, inApp = true}
+            local options = {} --{inApp = true}
             vk.login(function(err)
                 print('Corona Login Listener')
                 if err then
@@ -154,7 +154,8 @@ function scene:create(event)
                 text = 'Sharing Message',
                 link_title = 'Click This Link',
                 link = 'http://spiralcodestudio.com',
-                image_id = '32460109_375984950'}]]
+                image_id = '32460109_375984950'}
+            ]]
         end}
     group:insert(button)
 
