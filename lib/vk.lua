@@ -36,16 +36,24 @@ vk.getUserId() string
 
   Returns VK User Id of the current user
 
+vk.getAccessToken() table
+
+  Returns VK Access Token and it's additional information
+
 vk.showShareDialog(options)
-  options            - dictionary of string elemets
-  options.text       - main text
-  options.link_title - link text
-  options.link       - link URL
-  options.image_id   - VK Image ID, for example '7840938_319411365'
+  options                - dictionary of string elemets
+  options.text           - main text
+  options.linkTitle      - link text
+  options.link           - link URL
+  options.imageId        - VK Image ID, for example '7840938_319411365'
+  options.image          - table
+  options.image.filename - image filename to upload
+  options.image.baseDir  - image baseDir
+  options.listener       - completion listener
 
   Shows VK Share dialog
 
-vk.request(method, params, [httpMethod], listener)
+vk.request(method, params, listener)
   method     - VK API method string
   params     - method params, array of strings
   listener   - called on finish of the request
@@ -70,7 +78,7 @@ vk.init(app_id, permissions, launchArgs)
   vk.init() wrapper
 
 vk.getPhoto(params)
-  params - dictionary
+  params - table
   params.id       - VK User Id string, current user by default
   params.listener - called on finish of the request
 

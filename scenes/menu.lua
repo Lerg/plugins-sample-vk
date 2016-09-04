@@ -40,11 +40,9 @@ function scene:create(event)
         fillColor = fillColor,
         onRelease = function()
             local options = {} --{inApp = true}
-            vk.login(function(err)
+            vk.login(function(event)
                 print('Corona Login Listener')
-                if err then
-                    print(err)
-                end
+                print(json.prettify(event))
             end, options)
         end}
     group:insert(button)
@@ -132,14 +130,14 @@ function scene:create(event)
     local button = widget.newButton{
         x = _CX + spacing, y = _CY,
         width = w, height = h,
-        label = 'Share',
+        label = 'Wall post',
         shape = shape,
         cornerRadius = cornerRadius,
         fillColor = fillColor,
         onRelease = function()
             vk.request('wall.post', {
                     message = 'Spiral Code Studio website! http://spiralcodestudio.com',
-                    attachments = 'photo32460109_375984950'
+                    attachments = 'photo-48491658_316942391'
                 },
                 function(event)
                     if not event.isError then
@@ -148,14 +146,30 @@ function scene:create(event)
                         print('Error', event.errorMessage)
                     end
                 end)
+        end}
+    group:insert(button)
 
-            -- Using Share Dialog - only available on iOS
-            --[[vk.showShareDialog{
+    local button = widget.newButton{
+        x = _CX + spacing, y = _CY + spacing,
+        width = w, height = h,
+        label = 'Share dialog',
+        shape = shape,
+        cornerRadius = cornerRadius,
+        fillColor = fillColor,
+        onRelease = function()
+            vk.showShareDialog{
                 text = 'Sharing Message',
-                link_title = 'Click This Link',
+                linkTitle = 'Click This Link',
                 link = 'http://spiralcodestudio.com',
-                image_id = '32460109_375984950'}
-            ]]
+                imageId = '-48491658_431178351',
+                image = {
+                    filename = 'images/share.png',
+                    --baseDir = system.DocumentsDirectory
+                },
+                listener = function(event)
+                    print('Share dialog event:', json.prettify(event))
+                end
+            }
         end}
     group:insert(button)
 
@@ -173,7 +187,7 @@ function scene:create(event)
     group:insert(button)
 
     local button = widget.newButton{
-        x = _CX + spacing, y = _CY + spacing,
+        x = _CX - spacing, y = _CY + spacing * 2,
         width = w, height = h,
         label = 'Get User Id',
         shape = shape,
@@ -181,6 +195,18 @@ function scene:create(event)
         fillColor = fillColor,
         onRelease = function()
             alert(vk.getUserId())
+        end}
+    group:insert(button)
+
+    local button = widget.newButton{
+        x = _CX + spacing, y = _CY + spacing * 2,
+        width = w, height = h,
+        label = 'Access Token',
+        shape = shape,
+        cornerRadius = cornerRadius,
+        fillColor = fillColor,
+        onRelease = function()
+            print(json.prettify(vk.getAccessToken()))
         end}
     group:insert(button)
 end
