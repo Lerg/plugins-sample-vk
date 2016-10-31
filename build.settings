@@ -1,53 +1,49 @@
 settings = {
-    orientation = {
-        default = 'portrait',
-        supported = {'portrait', 'portraitUpsideDown'}
-    },
-    android = {
-        usesPermissions = {},
-        intentFilters = {
-            {
-                actions = {'android.intent.action.VIEW'},
-                categories = {
-                   'android.intent.category.DEFAULT',
-                   'android.intent.category.BROWSABLE'
-                },
-                data = {scheme = 'vk4789591'},
-            }
-        }
-    },
-    iphone = {
-        plist = {
-            CFBundleIconFiles = {
-                'Icon.png',
-                'Icon@2x.png',
-                'Icon-Small-40.png',
-                'Icon-Small-40@2x.png',
-                'Icon-60.png',
-                'Icon-60@2x.png',
-                'Icon-60@3x.png',
-                'Icon-72.png',
-                'Icon-72@2x.png',
-                'Icon-76.png',
-                'Icon-76@2x.png',
-                'Icon-Small-50.png',
-                'Icon-Small-50@2x.png',
-                'Icon-Small.png',
-                'Icon-Small@2x.png'
-            },
-            CFBundleURLTypes = {
-                {
-                    CFBundleURLSchemes = {
-                        'vk4789591'
-                    }
-                }
-            },
-            LSApplicationQueriesSchemes = {'vk', 'vk-share', 'vkauthorize'},
-            UIBackgroundModes = {'remote-notification'},
-            UIApplicationExitsOnSuspend = false,
-        },
-    },
-    plugins = {
-        ['plugin.vk'] = {publisherId = 'com.spiralcodestudio'}
-    }
+	orientation = {
+		default = 'portrait',
+		supported = {'portrait', 'portraitUpsideDown'}
+	},
+	android = {
+		usesPermissions = {},
+		intentFilters = {
+			{
+				actions = {'android.intent.action.VIEW'},
+				categories = {
+				   'android.intent.category.DEFAULT',
+				   'android.intent.category.BROWSABLE'
+				},
+				data = {scheme = 'vk4789591'}
+			}
+		}
+	},
+	iphone = {
+		plist = {
+			CFBundleIconFiles = {
+				'Icon.png',
+				'Icon@2x.png',
+				'Icon-Small-40.png',
+				'Icon-Small-40@2x.png',
+				'Icon-60.png',
+				'Icon-60@2x.png',
+				'Icon-60@3x.png',
+				'Icon-72.png',
+				'Icon-72@2x.png',
+				'Icon-76.png',
+				'Icon-76@2x.png',
+				'Icon-Small-50.png',
+				'Icon-Small-50@2x.png',
+				'Icon-Small.png',
+				'Icon-Small@2x.png'
+			},
+			CFBundleURLTypes = {
+				{CFBundleURLSchemes = {'vk4789591'}}
+			},
+			LSApplicationQueriesSchemes = {'vk', 'vk-share', 'vkauthorize'},
+			UIBackgroundModes = {'remote-notification'},
+			UIApplicationExitsOnSuspend = false
+		}
+	},
+	plugins = {
+		['plugin.vk'] = {publisherId = 'com.spiralcodestudio'}
+	}
 }
